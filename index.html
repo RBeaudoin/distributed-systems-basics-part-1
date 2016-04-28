@@ -30,7 +30,126 @@
 					<p><small>Presented by <a href="https://www.linkedin.com/pub/rich-beaudoin/3b/b22/26">Rich Beaudoin</a> / <a href="http://twitter.com/richgbeaudoin">@RichGBeaudoin &nbsp;</a>April 28th, 2015</small>
 					</p>
 				</section>
-				<section>Slide 2</section>
+				<section>
+					<h1>Overview</h1>
+					<ul>
+						<li>What is a distributed system?</li>
+						<li>Why distributed systems?</li>
+						<li>Some Fundamental concepts</li>
+						<li>Lamport: A Distributed System From Scratch</li>
+					</ul>
+				</section>
+				<section>
+					<h1>What is a distributed system?</h1>
+					<blockquote cite="https://en.wikipedia.org/wiki/Distributed_computing">A distributed system is a software system in which components located on networked computers communicate and coordinate their actions by passing messages</blockquote>
+					<p>Source: Distributed Systems: Concepts and Design (5th Edition). Boston: Addison-Wesley</p>
+				</section>
+				<section>
+					<h1>Some Examples</h1>
+					<img src="images/bitcoin.png"></img>
+					<img src="images/cassandra.jpeg"></img>
+					<img src="images/consul.png"></img>
+					<img src="images/hadoop.png"></img>
+					<img src="images/ipfs.png"></img>
+				</section>
+				<section>
+					<h1>Why Distributed Systems?</h1>
+					<ul>
+						<li>Fault tolerance, and availability</li>
+						<li>Horizontal scalability</li>
+						<li>Decentralization</li>
+						<li>An opportunity to geek out :)</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Fundamentals: Consistency Models</h2>
+					<blockquote cite="https://aphyr.com/posts/313-strong-consistency-models">"More formally, we say that a consistency model is the set of all allowed histories of operations. If we run a program and it goes through a sequence of operations in the allowed set, that particular execution is consistent. If the program screws up occasionally and goes through a history not in the consistency model, we say the history was inconsistent. If every possible execution falls into the allowed set, the system satisfies the model." - Kyle Kingsbury @aphyr</blockquote>
+				</section>
+				<section>
+					<h2>Fundamentals: Consistency Models</h2>
+					<h4>Strict Consistency</h4>
+					<img height="450" width="900" src="images/strict_consistency.png"></img>
+				</section>
+				<section>
+					<h2>Fundamentals: Consistency Models</h2>
+					<h4>Sequential Consistency (Linearizability, Serializability)</h4>
+					<img height="450" width="900" src="images/sequential_consistency.png"></img>
+				</section>
+				<section>
+					<h2>Fundamentals: Consistency Models</h2>
+					<h4>Causal Consistency</h4>
+					<ul>
+						<li>Writes that are "causally related" must be seen by all processors same order</li>
+						<ul>
+							<li>Includes "potentially" causal relationships</li>
+						</ul>
+						<li>Concurrent writes are allowed to be seen in different order on different processors</li>
+					</ul>
+					<img src="images/causal_consistency.jpg"></img>
+				</section>
+				<section>
+					<h2>Fundamentals: CAP Theorem</h2>
+					<img height="350" width="350" src="images/CAP.png"></img>
+					<p>We need to be careful about <a href="https://martin.kleppmann.com/2015/05/11/please-stop-calling-databases-cp-or-ap.html">applying CAP incorrectly</a>
+				</section>
+				<section>
+					<h2>Fundamentals: Time</h2>
+					<ul>
+						<li>Clocks can drift, synchronizing time across nodes is difficult</li>
+						<li>Without time, how can we order events across the system?</li>
+						<ul>
+							<li>Lamport Timestamps (logical clocks)</li>
+							<li>Vector Clocks</li>
+						</ul>
+						<p>Be sure to check out <a href="http://research.microsoft.com/en-us/um/people/lamport/pubs/time-clocks.pdf">Time, Clocks, and the Ordering of Events in a Distributed System</a> by Lesile Lamport</p>
+					</ul>
+				</section>
+				<section>
+					<h2>Fundamentals: Consensus</h2>
+					<p>The system will have to be brought to consensus to handle situations like:</p>
+					<ul>
+						<li>Leader Election</li>
+						<li>Commiting Transactions</li>
+						<li>State Machine Replication</li>
+					</ul>
+					<p>To do this we can use protocols and alogorithms like:</p>
+					<ul>
+						<li><a href="https://raft.github.io/">Raft</a></li>
+						<li><a href="https://en.wikipedia.org/wiki/Paxos_(computer_science)">Paxos</a></li>
+						<li>Or a tool library like <a href="https://zookeeper.apache.org/">Zookeeper...</a></li>
+					</ul>
+				</section>
+				<section>
+					<h2>Introduction to Apache Zookeeper</h2>
+					<ul>
+						<li>Distributed system for building distributed systems!</li>
+						<li>Provides a hierarchichal namespace of values (i.e. znodes)</li>
+						<ul>
+							<li>Clients can create/delete znodes</li>
+							<li>Znodes can be ephemeral and/or sequenced</li>
+							<li>Clients can "watch" for znode changes</li>
+						</ul>
+						<img src="images/zknamespace.jpg"></img>
+					</ul>
+				</section>
+				<section>
+					<h2>Introducing Lamport</h2>
+					<ul>
+						<li>A distributed system built in Go</li>
+						<li>An academic exercise to learn about distributed systems</li>
+						<li>Initially using Zookeeper "recipes" for leader election</li>
+						<li>An opportunity to verify correctness of consistency models</li>
+					</ul>
+					<p><a href="https://github.com/Distributed-Computing-Denver/lamport">Lamport on Github</a></p>
+					<p><a href="https://groups.google.com/forum/#!forum/lamport-developers">Lamport Google Group</a></p>
+				</section>
+				<section>
+					<h1>Questions??</h1>
+				</section>
+				<section>
+					<h1>References</h1>
+					<ul></ul>
+				</section>
 			</div>
 		</div>
 
